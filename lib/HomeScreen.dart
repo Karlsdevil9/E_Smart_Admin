@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import './App_drawer.dart';
-import './Cart.dart';
 import './Providers/Products_providers.dart';
 import './Providers/Cart_provider.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +17,8 @@ class HomeScreen extends StatelessWidget {
     final productsData = Provider.of<ProductsProvider>(context);
     final cart = Provider.of<CartProvider>(context, listen: false);
 
-    final product = showfav ? productsData.favItems : productsData.items;
+    final List<Product> product =
+        showfav ? productsData.favItems : productsData.items;
     return Scaffold(
       appBar: AppBar(
         title: Text('Esmart'),
@@ -49,10 +49,10 @@ class HomeScreen extends StatelessWidget {
                 child: Stack(
               children: [
                 GestureDetector(
-                    child: Image.network(product[index]['Link']),
+                    child: Image.network(product[index].imageUrl),
                     onTap: () {
                       Navigator.pushNamed(context, '/productOverviewScreen',
-                          arguments: product[index]['id']);
+                          arguments: product[index].id);
                     }),
                 Align(
                   alignment: Alignment.bottomCenter,
@@ -66,16 +66,16 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           IconButton(
                               icon: Icon(
-                                product[index]['fav']
+                                product[index].isFavorite
                                     ? Icons.favorite
                                     : Icons.favorite_border,
                                 color: Colors.redAccent,
                               ),
                               onPressed: () {
-                                productsData.toggleFav(index);
+                                product[index].toggleFavoriteStatus();
                               }),
                           Text(
-                            product[index]['Title'],
+                            product[index].title,
                             style: TextStyle(color: Colors.white),
                           ),
                           IconButton(
@@ -85,10 +85,10 @@ class HomeScreen extends StatelessWidget {
                               ),
                               onPressed: () {
                                 cart.addItem(
-                                    product[index]['id'],
-                                    product[index]['Price'],
-                                    product[index]['Title'],
-                                    product[index]['Link']);
+                                    product[index].id,
+                                    product[index].price,
+                                    product[index].title,
+                                    product[index].imageUrl);
                                 Scaffold.of(context).hideCurrentSnackBar();
                                 Scaffold.of(context).showSnackBar(SnackBar(
                                   content: Text("Item added to cart!"),
@@ -97,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                                       label: "Undo",
                                       onPressed: () {
                                         cart.removeSingleItem(
-                                            product[index]['id']);
+                                            product[index].id);
                                       }),
                                 ));
                               })
