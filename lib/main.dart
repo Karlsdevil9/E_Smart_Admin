@@ -9,6 +9,7 @@ import './Providers/Cart_provider.dart';
 import './Cart.dart';
 import './Providers/Orders.dart';
 import './OrdersScreen.dart';
+import './Admin_products_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
           ProductOverviewScreen.routeName: (context) => ProductOverviewScreen(),
           HomeScreen.routeName: (context) => HomeScreen(),
           Cart.routeName: (context) => Cart(),
-          OrdersScreen.routeName: (context) => OrdersScreen()
+          OrdersScreen.routeName: (context) => OrdersScreen(),
+          AdminProductScreen.routeName: (context) => AdminProductScreen()
         },
       ),
     );

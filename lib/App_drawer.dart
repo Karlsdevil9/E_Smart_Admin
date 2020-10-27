@@ -3,9 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import './MyAccount.dart';
 
 class Appdrawer extends StatelessWidget {
-  List wishList = [];
-  List cartList = [];
-  Appdrawer({wishList, cartList});
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -19,7 +16,8 @@ class Appdrawer extends StatelessWidget {
         ),
         ListTile(
           onTap: () {
-            Navigator.pushNamed(context, '/HomeScreen', arguments: false);
+            Navigator.pushReplacementNamed(context, '/HomeScreen',
+                arguments: false);
           },
           title: Text("Home"),
         ),
@@ -31,9 +29,15 @@ class Appdrawer extends StatelessWidget {
         ),
         ListTile(
           onTap: () {
-            Navigator.pushNamed(context, '/OrderScreen');
+            Navigator.pushReplacementNamed(context, '/OrderScreen');
           },
           title: Text("Order"),
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.pushReplacementNamed(context, '/Admin-products');
+          },
+          title: Text("Manage Products"),
         ),
         ListTile(
           onTap: () {
