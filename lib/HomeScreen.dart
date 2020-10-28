@@ -4,10 +4,6 @@ import './Providers/Products_providers.dart';
 import './Providers/Cart_provider.dart';
 import 'package:provider/provider.dart';
 
-List cartItems = [];
-List wishList = [];
-bool isWishList = false;
-
 class HomeScreen extends StatelessWidget {
   static const routeName = '/HomeScreen';
   @override

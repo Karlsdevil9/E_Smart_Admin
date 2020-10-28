@@ -5,7 +5,6 @@ import './Providers/Orders.dart';
 
 class Cart extends StatelessWidget {
   static const routeName = '/Cart';
-  List orders = [];
 
   @override
   Widget build(BuildContext context) {

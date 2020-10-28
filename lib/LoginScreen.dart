@@ -1,4 +1,3 @@
-import 'package:e_smart/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import './Curvepainter.dart';
 import './SignupScreen.dart';

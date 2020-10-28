@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './Providers/Products_providers.dart';
 import './App_drawer.dart';
+import './Edit_Product_Screen.dart';
 
 class AdminProductScreen extends StatelessWidget {
   static const routeName = '/Admin-products';
@@ -17,7 +18,7 @@ class AdminProductScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () {
-              // ...
+              Navigator.of(context).pushNamed(EditProductScreen.routeName);
             },
           ),
         ],
@@ -40,12 +41,19 @@ class AdminProductScreen extends StatelessWidget {
                     children: <Widget>[
                       IconButton(
                         icon: Icon(Icons.edit),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(
+                              EditProductScreen.routeName,
+                              arguments: product[i].id);
+                        },
                         color: Theme.of(context).primaryColor,
                       ),
                       IconButton(
                         icon: Icon(Icons.delete),
-                        onPressed: () {},
+                        onPressed: () {
+                          Provider.of<ProductsProvider>(context, listen: false)
+                              .deleteProduct(product[i].id);
+                        },
                         color: Theme.of(context).errorColor,
                       ),
                     ],

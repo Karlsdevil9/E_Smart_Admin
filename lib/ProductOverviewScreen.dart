@@ -7,10 +7,8 @@ class ProductOverviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productsData = Provider.of<ProductsProvider>(context);
-    final product = productsData.items;
     final productId = ModalRoute.of(context).settings.arguments as String;
-    final index = Provider.of<ProductsProvider>(context, listen: false)
+    final product = Provider.of<ProductsProvider>(context, listen: false)
         .findById(productId);
 
     return Scaffold(
@@ -19,7 +17,7 @@ class ProductOverviewScreen extends StatelessWidget {
         children: [
           Container(
             height: 300,
-            child: Image.network(product[index]['Link']),
+            child: Image.network(product.imageUrl),
           )
         ],
       ),

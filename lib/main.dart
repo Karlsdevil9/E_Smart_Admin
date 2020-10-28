@@ -10,6 +10,7 @@ import './Cart.dart';
 import './Providers/Orders.dart';
 import './OrdersScreen.dart';
 import './Admin_products_screen.dart';
+import './Edit_Product_Screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
           HomeScreen.routeName: (context) => HomeScreen(),
           Cart.routeName: (context) => Cart(),
           OrdersScreen.routeName: (context) => OrdersScreen(),
-          AdminProductScreen.routeName: (context) => AdminProductScreen()
+          AdminProductScreen.routeName: (context) => AdminProductScreen(),
+          EditProductScreen.routeName: (context) => EditProductScreen(),
         },
       ),
     );
