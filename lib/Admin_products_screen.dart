@@ -9,6 +9,7 @@ class AdminProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaffold = Scaffold.of(context);
     final productsData = Provider.of<ProductsProvider>(context);
     final List<Product> product = productsData.items;
     return Scaffold(
@@ -50,9 +51,21 @@ class AdminProductScreen extends StatelessWidget {
                       ),
                       IconButton(
                         icon: Icon(Icons.delete),
-                        onPressed: () {
-                          Provider.of<ProductsProvider>(context, listen: false)
-                              .deleteProduct(product[i].id);
+                        onPressed: () async {
+                          try {
+                            await Provider.of<ProductsProvider>(context,
+                                    listen: false)
+                                .deleteProduct(product[i].id);
+                          } catch (error) {
+                            scaffold.showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Deleting failed!',
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            );
+                          }
                         },
                         color: Theme.of(context).errorColor,
                       ),
